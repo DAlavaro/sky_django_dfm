@@ -1,0 +1,63 @@
+[
+  {
+    "model": "catalog.category",
+    "pk": 1,
+    "fields": {
+      "title": "test",
+      "description": ""
+    }
+  },
+  {
+    "model": "catalog.category",
+    "pk": 2,
+    "fields": {
+      "title": "Test 1",
+      "description": null
+    }
+  },
+  {
+    "model": "catalog.category",
+    "pk": 3,
+    "fields": {
+      "title": "Test 2",
+      "description": null
+    }
+  },
+  {
+    "model": "catalog.category",
+    "pk": 4,
+    "fields": {
+      "title": "Test 3",
+      "description": null
+    }
+  },
+  {
+    "model": "catalog.category",
+    "pk": 5,
+    "fields": {
+      "title": "Test 4",
+      "description": null
+    }
+  },
+  {
+    "model": "catalog.category",
+    "pk": 6,
+    "fields": {
+      "title": "Test 5",
+      "description": null
+    }
+  },
+  {
+    "model": "catalog.product",
+    "pk": 1,
+    "fields": {
+      "title": "one",
+      "description": "",
+      "photo": "product/sberbank.webp",
+      "category": 1,
+      "price": 123,
+      "created_at": "2024-04-07T20:15:26.643Z",
+      "edited_at": "2024-04-07T20:18:01.985Z"
+    }
+  }
+]
