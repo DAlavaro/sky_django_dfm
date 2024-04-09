@@ -1,7 +1,13 @@
 from django.shortcuts import render
 
+from app.catalog.models import Product
+
 
 def home(request):
+    last_products = Product.objects.all().order_by('-created_at')[:5]
+
+    for product in last_products:
+        print(product.title)
     return render(request, 'catalog/home.html')
 
 
