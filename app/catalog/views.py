@@ -1,6 +1,6 @@
 from django.shortcuts import render
 
-from app.catalog.models import Product
+from app.catalog.models import Product, Contact
 
 
 def home(request):
@@ -13,7 +13,10 @@ def home(request):
 
 def contacts(request):
     template = 'catalog/contacts.html'
-    context = {}
+    contacts = Contact.objects.all()
+    context = {
+        'contacts': contacts
+    }
     if request.method == 'POST':
         context.update(request.POST.dict())
 
