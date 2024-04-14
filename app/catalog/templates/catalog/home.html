@@ -6,31 +6,24 @@
         <p class="lead">Skystore - это отличный вариант хранения ваших плагинов и примеров кода, который вы бы хотели
             продать</p>
     </div>
-    <div class="container">
-        <div class="row text-center">
-            <div class="col-3">
-
-                <div class="col">
-                    <div class="card ">
-                        {% for product in last_products %}
-                            <div class="card-header">
-                                <h4 class="my-0 font-weight-normal">Удобный сервис рассылок</h4>
-                            </div>
-                            <div class="card-body">
-                                <h1 class="card-title pricing-card-title">$ 140</h1>
-                                <ul class="list-unstyled mt-3 mb-4 text-start m-3">
-                                    <li>- Неограниченная лицензия</li>
-                                    <li>- Поддержка</li>
-                                    <li>- Установка на сервер</li>
-                                    <li>- Получение обновлений</li>
-                                </ul>
-                                <button type="button" class="btn btn-lg btn-block btn-outline-primary">Купить</button>
-                            </div>
-                        {% endfor %}
-                    </div>
-                </div>
-
-            </div>
+    
+    <div class="row row-cols-1 row-cols-md-3 mb-3 text-center">
+    {% for product in last_products %}
+      <div class="col">
+        <div class="card mb-4 rounded-3 shadow-sm">
+          <div class="card-header py-3">
+            <h4 class="my-0 fw-normal">{{ product.title }}</h4>
+          </div>
+          <div class="card-body">
+            <h1 class="card-title pricing-card-title">{{ product.price }}<small class="text-body-secondary fw-light"> руб.</small></h1>
+            <ul class="list-unstyled mt-3 mb-4">
+              <li>{{ product.description }}</li>
+            </ul>
+            <button type="button" class="w-100 btn btn-lg btn-outline-primary">Подробнее</button>
+          </div>
         </div>
+      </div>
+    {% endfor %}
     </div>
+    
 {% endblock %}
