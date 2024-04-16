@@ -1,0 +1,28 @@
+{% extends 'catalog/base.html' %}
+
+{% block content %}
+    <div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
+        <h1 class="display-4">Skystore</h1>
+        <p class="lead">Skystore - это отличный вариант хранения ваших плагинов и примеров кода, который вы бы хотели
+            продать</p>
+    </div>
+
+    <div class="row row-cols-1 row-cols-md-3 mb-3 text-center">
+        <div class="col">
+            <div class="card mb-4 rounded-3 shadow-sm">
+                <div class="card-header py-3">
+                    <h4 class="my-0 fw-normal">{{ object.title }}</h4>
+                </div>
+                <div class="card-body">
+                    <h1 class="card-title pricing-card-title">{{ object.price }}<small
+                            class="text-body-secondary fw-light"> руб.</small></h1>
+                    <ul class="list-unstyled mt-3 mb-4">
+                        <li>{{ object.description }}</li>
+                    </ul>
+                    <a href="{% url 'catalog:product' object.id %}" class="w-100 btn btn-lg btn-outline-primary">Подробнее</a>
+                </div>
+            </div>
+        </div>                                                                                                          
+    </div>
+
+{% endblock %}

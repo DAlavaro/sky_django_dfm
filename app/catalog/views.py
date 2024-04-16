@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 
 from app.catalog.models import Product, Contact
 
@@ -21,3 +21,11 @@ def contacts(request):
         context.update(request.POST.dict())
 
     return render(request, template, context)
+
+
+def product(request, pk):
+    prod = get_object_or_404(Product, pk=pk)
+    context = {
+        'object': prod
+    }
+    return render(request, 'catalog/product.html', context)
