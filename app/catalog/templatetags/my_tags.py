@@ -5,9 +5,13 @@ register = template.Library()
 
 @register.filter(name='my_path')
 def my_path(value):
+    if not value:
+        return 'Ничего нет'
     return f"{settings.MEDIA_URL}{value}"
 
 
 @register.simple_tag
 def mediapath(value):
-    return f"{settings.MEDIA_URL}{value}"
+    if not value:
+        return 'Ничего нет'  # Возможно стоит предусмотреть дефолтное изображение
+    return f'{settings.MEDIA_URL}{value}'
