@@ -9,20 +9,20 @@
     </div>
 
     <div class="row row-cols-1 row-cols-md-3 mb-3 text-center">
-        {% for product in last_products %}
+        {% for object in object_list %}
             <div class="col">
                 <div class="card mb-4 rounded-3 shadow-sm">
                     <div class="card-header py-3">
-                        <h4 class="my-0 fw-normal">{{ product.title }}</h4>
+                        <h4 class="my-0 fw-normal">{{ object.title }}</h4>
                     </div>
                     <div class="card-body">
-                        <h1 class="card-title pricing-card-title">{{ product.price }}<small
+                        <h1 class="card-title pricing-card-title">{{ object.price }}<small
                                 class="text-body-secondary fw-light"> руб.</small></h1>
-                        <img src="{% mediapath product.photo %}" class="card-img-top" alt="Нет изображения">
+                        <img src="{% mediapath object.photo %}" class="card-img-top" alt="Нет изображения">
                         <ul class="list-unstyled mt-3 mb-4">
-                            <li>{{ product.description|truncatechars:100}}</li>
+                            <li>{{ object.description|truncatechars:100}}</li>
                         </ul>
-                        <a href="{% url 'catalog:product' product.id %}" class="w-100 btn btn-lg btn-outline-primary">Подробнее</a>
+                        <a href="{% url 'catalog:product' object.id %}" class="w-100 btn btn-lg btn-outline-primary">Подробнее</a>
                     </div>
                 </div>
             </div>
