@@ -1,3 +1,4 @@
+from app.blog.models import Blog
 from app.catalog.models import Category, Product
 from django.core.management import BaseCommand
 
@@ -6,6 +7,7 @@ class Command(BaseCommand):
     # Clear existing records from the models
     Category.objects.all().delete()
     Product.objects.all().delete()
+    Blog.objects.all().delete()
 
     def handle(self, *args, **options):
         category_one = Category.objects.create(
@@ -33,3 +35,13 @@ class Command(BaseCommand):
         for item in product_list:
             created = Product.objects.create(**item)
             product_for_create.append(created)
+
+        blog_list = [
+            {'title': 'blog_one', 'slug': 'blog_one','content': 'content_one', 'photo': 'blog/blog_one.png', 'is_published': True},
+            {'title': 'blog_two', 'slug': 'blog_two','content': 'content_two', 'photo': 'blog/blog_two.png', 'is_published': True},
+        ]
+
+        blog_for_create = []
+        for item in blog_list:
+            created = Blog.objects.create(**item)
+            blog_for_create.append(created)

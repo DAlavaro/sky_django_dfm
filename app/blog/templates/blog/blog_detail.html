@@ -1,0 +1,28 @@
+{% extends "catalog/base.html" %}
+
+{% block content %}
+<div class="container mt-4">
+  <h1>{{ object.title }}</h1>
+  <div class="row">
+    <div class="col-md-6">
+      {% if object.photo %}
+      <img src="{{ object.photo.url }}" class="img-fluid" alt="{{ object.title }}">
+      {% endif %}
+    </div>
+    <div class="col-md-6">
+      <div class="card-body">
+        {{ object.content|linebreaks }}
+      </div>
+      <div class="card-footer text-muted">
+        Опубликовано: {{ object.created_at|date:"d.m.Y H:i" }}
+        <span class="badge bg-info">{{ object.views_count }} просмотров</span>
+        {% if object.is_published %}
+        <span class="badge bg-success">Опубликовано</span>
+        {% else %}
+        <span class="badge bg-secondary">Не опубликовано</span>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

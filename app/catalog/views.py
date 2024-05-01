@@ -1,14 +1,14 @@
-from django.shortcuts import render, get_object_or_404
-
+from django.shortcuts import render
+from django.views.generic import ListView, DetailView
 from app.catalog.models import Product, Contact
 
 
-def home(request):
-    last_products = Product.objects.all().order_by('-created_at')[:5]
-    context = {
-        'last_products': last_products
-    }
-    return render(request, 'catalog/home.html', context)
+class ProductListView(ListView):
+    model = Product
+
+
+class ProductDetailView(DetailView):
+    model = Product
 
 
 def contacts(request):
@@ -21,11 +21,3 @@ def contacts(request):
         context.update(request.POST.dict())
 
     return render(request, template, context)
-
-
-def product(request, pk):
-    prod = get_object_or_404(Product, pk=pk)
-    context = {
-        'object': prod
-    }
-    return render(request, 'catalog/product.html', context)

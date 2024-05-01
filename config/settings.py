@@ -41,6 +41,7 @@ DJANGO_APPS = [
 
 USER_APPS = [
     'app.catalog.apps.CatalogConfig',
+    'app.blog.apps.BlogConfig',
 ]
 
 INSTALLED_APPS = DJANGO_APPS + USER_APPS
