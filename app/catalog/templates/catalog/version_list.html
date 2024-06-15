@@ -22,9 +22,9 @@
                                 <li>Номер версии - {{ object.number }}</li>
                                 <li>
                                     {% if object.is_active %}
-                                        <li class="btn btn-success">Активная версия</li>
+                                        <li class="text-success">Активная версия</li>
                                     {% else %}
-                                        <li class="btn btn-outline-secondary">Неактивно</li>
+                                        <li class="text-secondary">Неактивная версия</li>
                                     {% endif %}
                             </ul>
                             <a href="{% url 'catalog:version_update' product.pk object.pk %}" class="w-100 btn btn-lg btn-outline-primary">Изменить</a>
