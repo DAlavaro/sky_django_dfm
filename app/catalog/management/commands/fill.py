@@ -1,5 +1,5 @@
 from app.blog.models import Blog
-from app.catalog.models import Category, Product
+from app.catalog.models import Category, Product, Version
 from django.core.management import BaseCommand
 
 
@@ -8,6 +8,7 @@ class Command(BaseCommand):
     Category.objects.all().delete()
     Product.objects.all().delete()
     Blog.objects.all().delete()
+    Version.objects.all().delete()
 
     def handle(self, *args, **options):
         category_one = Category.objects.create(
@@ -45,3 +46,18 @@ class Command(BaseCommand):
         for item in blog_list:
             created = Blog.objects.create(**item)
             blog_for_create.append(created)
+
+        version_list = [
+            {'product': product_for_create[0], 'number': 1, 'title': 'Version 1.0', 'is_active': True},
+            {'product': product_for_create[0], 'number': 2, 'title': 'Version 2.0'},
+            {'product': product_for_create[1], 'number': 1, 'title': 'Version 1.0', 'is_active': True},
+            {'product': product_for_create[1], 'number': 2, 'title': 'Version 2.0'},
+            {'product': product_for_create[2], 'number': 1, 'title': 'Version 1.0', 'is_active': True},
+            {'product': product_for_create[2], 'number': 2, 'title': 'Version 2.0'},
+        ]
+
+        version_for_create = []
+        for item in version_list:
+            created = Version.objects.create(**item)
+            version_for_create.append(created)
+
