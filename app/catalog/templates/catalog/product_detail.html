@@ -23,7 +23,17 @@
                         <li>{{ object.description }}</li>
                         <li>Категория товара - {{ object.category }}</li>
                         <li>Дата создания - {{ object.created_at }}</li>
-                        <li>Дата пследнего изменения - {{ object.edited_at }}</li>
+                        <li>Дата последнего изменения - {{ object.edited_at }}</li>
+                        <li>
+                            {% for version in object.version_set.all %}
+                                {% if version.is_active %}
+                                    <li>версия №{{ version.number }}  <a href="{% url 'catalog:product_versions' object.id  %}">{{ version.title }}</a></li>
+                                {% endif %}
+                            {% empty %}
+                                <li>У этого продукта нет версий.</li>
+                                <li><a href="{% url 'catalog:product_versions' object.id  %}">Указать версию?</a></li>
+                            {% endfor %}
+                        </li>
                     </ul>
                     <a href="{% url 'catalog:home' %}" class="w-100 btn btn-lg btn-outline-primary">Назад</a>
                 </div>
