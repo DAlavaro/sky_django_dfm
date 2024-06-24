@@ -9,12 +9,13 @@ from django.urls import reverse_lazy, reverse
 from django.views.decorators.http import require_http_methods
 from django.views.generic import CreateView, View
 
-from app.users.forms import UserForm
+from app.users.forms import UserForm, LoginForm
 from app.users.models import Users, EmailVerificationToken
 
 
 class LoginView(BaseLoginView):
     template_name = 'users/login.html'
+    form_class = LoginForm
 
 
 class LogoutView(BaseLogoutView):
