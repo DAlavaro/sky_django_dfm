@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 """
 import os
 from pathlib import Path
+from dotenv import load_dotenv
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -42,6 +43,7 @@ DJANGO_APPS = [
 USER_APPS = [
     'app.catalog.apps.CatalogConfig',
     'app.blog.apps.BlogConfig',
+    'app.users.apps.UsersConfig',
 ]
 
 INSTALLED_APPS = DJANGO_APPS + USER_APPS
@@ -114,7 +116,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/5.0/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'ru-ru'
 
 TIME_ZONE = 'UTC'
 
@@ -142,3 +144,15 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 FIXTURE_DIRS = [
     BASE_DIR / 'fixtures',
 ]
+
+AUTH_USER_MODEL = 'users.Users'
+LOGIN_REDIRECT_URL = '/'
+LOGOUT_REDIRECT_URL = '/'
+
+load_dotenv()
+EMAIL_HOST = 'smtp.yandex.ru'
+EMAIL_PORT = 465
+EMAIL_HOST_USER = os.getenv("MYLOGIN")
+EMAIL_HOST_PASSWORD = os.getenv("MYPASSWORD")
+EMAIL_USE_SSL = True
+
