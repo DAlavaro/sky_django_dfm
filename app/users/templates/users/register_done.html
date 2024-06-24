@@ -1,0 +1,20 @@
+{% extends 'catalog/base.html' %}
+
+{% block content %}
+
+    <div class="row">
+        <div class="col-3"></div>
+        <div class="col-6">
+            <div class="card">
+                <div class="card-header">Требуется подтверждение электронной почты</div>
+                <div class="card-body">
+                    <p>Для завершения регистрации, пожалуйста, проверьте вашу электронную почту и следуйте инструкциям в
+                        письме, чтобы подтвердить свой адрес.</p>
+                    <p>Если вы не видите письмо, пожалуйста, проверьте папку со спамом.</p>
+                    <a href="{% url 'users:login' %}" class="btn btn-primary">Вернуться на страницу входа</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

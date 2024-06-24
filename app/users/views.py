@@ -25,7 +25,7 @@ class LogoutView(BaseLogoutView):
 class RegisterView(CreateView):
     model = Users
     form_class = UserForm
-    success_url = reverse_lazy('catalog:home')
+    success_url = reverse_lazy('users:register_done')
     template_name = 'users/register.html'
 
     def form_valid(self, form):
@@ -41,6 +41,10 @@ class RegisterView(CreateView):
             recipient_list=[new_object.email],
         )
         return super().form_valid(form)
+
+
+def register_done(request):
+    return render(request, 'users/register_done.html')
 
 
 class EmailVerifyView(View):
