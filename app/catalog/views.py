@@ -1,3 +1,4 @@
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render
 from django.urls import reverse, reverse_lazy
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
@@ -17,10 +18,16 @@ class ProductDetailView(DetailView):
     model = Product
 
 
-class ProductCreateView(CreateView):
+class ProductCreateView(LoginRequiredMixin, CreateView):
     model = Product
     form_class = ProductForm
     success_url = reverse_lazy('catalog:home')
+
+    def form_valid(self, form):
+        self.object = form.save()
+        self.object.owner = self.request.user
+        self.object.save()
+        return super().form_valid(form)
 
 
 class ProductUpdateView(UpdateView):
@@ -74,6 +81,7 @@ class VersionCreateView(CreateView):
 
     def get_success_url(self):
         return reverse('catalog:product_versions', kwargs={'pk': self.object.product.pk})
+
 
 class VersionUpdateView(UpdateView):
     model = Version

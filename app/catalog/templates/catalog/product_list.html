@@ -8,13 +8,16 @@
             продать</p>
     </div>
     <div class="row">
-        <a class="btn btn-primary mb-1" href="{% url 'catalog:product_create' %}">Добавить продукт</a>
+        {% if user.is_authenticated %}
+            <a class="btn btn-primary mb-1" href="{% url 'catalog:product_create' %}">Добавить продукт</a>
+        {% endif %}
         <div class="row row-cols-1 row-cols-md-3 mb-3 text-center">
             {% for object in object_list %}
                 <div class="col">
                     <div class="card mb-4 rounded-3 shadow-sm">
                         <div class="card-header py-3">
                             <h4 class="my-0 fw-normal">{{ object.title }}</h4>
+                            <span class="text-muted">Продавец: {{ object.owner|default:"Нет" }}</span>
                         </div>
                         <div class="card-body">
                             <h1 class="card-title pricing-card-title">{{ object.price }}<small
@@ -23,12 +26,14 @@
                             <ul class="list-unstyled mt-3 mb-4">
                                 <li>{{ object.description|truncatechars:100 }}</li>
                             </ul>
+                            {% if user.is_authenticated %}
                             <a href="{% url 'catalog:product' object.id %}"
                                class="w-100 btn btn-lg btn-outline-primary">Подробнее</a>
                             <a href="{% url 'catalog:product_update' object.id %}"
                                class="w-100 btn btn-lg btn-outline-primary">Изменить</a>
                             <a href="{% url 'catalog:product_delete' object.id %}"
                                class="w-100 btn btn-lg btn-outline-primary">Удалить</a>
+                            {% endif %}
                         </div>
                     </div>
                 </div>

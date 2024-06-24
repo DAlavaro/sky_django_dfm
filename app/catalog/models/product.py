@@ -1,3 +1,4 @@
+from django.conf import settings
 from django.db import models
 
 NULLABLE = {'null': True, 'blank': True}
@@ -11,6 +12,8 @@ class Product(models.Model):
     price = models.PositiveIntegerField(verbose_name='Цена', **NULLABLE)
     created_at = models.DateTimeField(auto_now_add=True, verbose_name='Дата создания', **NULLABLE)
     edited_at = models.DateTimeField(auto_now=True, verbose_name='Дата обновления', **NULLABLE)
+
+    owner = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.SET_NULL, verbose_name='Владелец', **NULLABLE)
 
     def __str__(self):
         return f'{self.title} ({self.category})'
