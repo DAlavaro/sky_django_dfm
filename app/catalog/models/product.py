@@ -14,6 +14,7 @@ class Product(models.Model):
     edited_at = models.DateTimeField(auto_now=True, verbose_name='Дата обновления', **NULLABLE)
 
     owner = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.SET_NULL, verbose_name='Владелец', **NULLABLE)
+    is_published = models.BooleanField(default=False, verbose_name='Публикация', **NULLABLE)
 
     def __str__(self):
         return f'{self.title} ({self.category})'
