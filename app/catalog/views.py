@@ -5,6 +5,7 @@ from django.views.generic import ListView, DetailView, CreateView, UpdateView, D
 
 from app.catalog.forms import ProductForm, ConfirmDeleteForm, VersionForm
 from app.catalog.models import Product, Contact, Version
+from app.catalog.services import get_categories_cache
 
 
 class ProductListView(ListView):
@@ -12,6 +13,11 @@ class ProductListView(ListView):
 
     def get_queryset(self):
         return Product.objects.prefetch_related('version_set').all()
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['categories'] = get_categories_cache()
+        return context
 
 
 class ProductDetailView(DetailView):

@@ -50,6 +50,8 @@ USER_APPS = [
 INSTALLED_APPS = DJANGO_APPS + USER_APPS
 
 MIDDLEWARE = [
+    'django.middleware.cache.UpdateCacheMiddleware',
+
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -57,6 +59,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+
+    'django.middleware.cache.FetchFromCacheMiddleware',
 ]
 
 ROOT_URLCONF = 'config.urls'
@@ -156,4 +160,14 @@ EMAIL_PORT = 465
 EMAIL_HOST_USER = os.getenv("MYLOGIN")
 EMAIL_HOST_PASSWORD = os.getenv("MYPASSWORD")
 EMAIL_USE_SSL = True
+
+CACHES_ENABLED = os.getenv('CACHE_ENABLE') == 1
+
+CACHES = {
+    "default": {
+        "BACKEND": "django.core.cache.backends.redis.RedisCache",
+        "LOCATION": os.getenv('CACHE_LOCATION'),
+    }
+}
+
 
